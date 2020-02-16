@@ -5,7 +5,7 @@ using UnityEngine;
 public class CharactorCollider : MonoBehaviour
 {
     public GameObject text;
-
+    public Dog dog;
 
     // Start is called before the first frame update
     void Start()
@@ -18,10 +18,11 @@ public class CharactorCollider : MonoBehaviour
     {
     }
 
-    private void OnCollisionEnter2D(Collision2D col)
+    private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.name == "Enemy")
-            StartCoroutine(ShowText());
+        if (col.GetComponent<Enemy>() != null)
+           dog.state = DogState.Follow;
+            
     }
 
     IEnumerator ShowText()
